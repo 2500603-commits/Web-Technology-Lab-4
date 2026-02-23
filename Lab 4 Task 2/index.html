@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ATM System</title>
+</head>
+<body>
+
+    <h2>Simple ATM System</h2>
+
+    <p><b>Current Balance: </b> Rs. <span id="balance">5000</span></p>
+
+    <!-- 1. Input field for withdrawal amount -->
+    <label>Enter Withdrawal Amount:</label>
+    <input type="number" id="withdrawAmount" placeholder="Enter amount">
+    <br><br>
+
+    <button onclick="withdraw()">Withdraw</button>
+
+    <p id="message"></p>
+
+    <script>
+        // Initial Balance
+        let balance = 5000;
+
+        function withdraw() {
+
+            let amount = parseFloat(document.getElementById("withdrawAmount").value);
+
+            // Check if input is valid
+            if (isNaN(amount) || amount <= 0) {
+                document.getElementById("message").innerHTML = "Please enter a valid amount.";
+                return;
+            }
+
+            // 3. Prevent withdrawal if Amount > Balance
+            if (amount > balance) {
+                document.getElementById("message").innerHTML = "Insufficient Balance!";
+            } 
+            else {
+                // 2. Deduct amount from balance
+                balance = balance - amount;
+
+                // 4. Display updated balance
+                document.getElementById("balance").innerHTML = balance;
+                document.getElementById("message").innerHTML = "Withdrawal Successful!";
+            }
+        }
+    </script>
+
+</body>
+</html>
